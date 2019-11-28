@@ -7,17 +7,12 @@
 // @lc code=start
 func uniqueMorseRepresentations(words []string) int {
 	morseCode := []string{".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."}
-	letters := make(map[rune]string)
-	letterStart := 97
-	for i, v := range morseCode {
-		letters[rune(letterStart+i)] = v
-	}
 
 	transform := make(map[string]struct{})
 	for _, word := range words {
 		morseCodeTransform := ""
 		for _, v := range word {
-			morseCodeTransform += letters[v]
+			morseCodeTransform += morseCode[v-'a']
 		}
 		transform[morseCodeTransform] = struct{}{}
 	}
